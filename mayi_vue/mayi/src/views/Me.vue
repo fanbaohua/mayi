@@ -15,23 +15,21 @@
       </div>
       <div class="metoptwo" v-else>
         <van-row class="row">
-          <van-col span="6">
-            <van-uploader>
-              <van-image
-                round
-                width="75"
-                height="75"
-                src=""
-                :onerror="defaultImg"
-              />
-            </van-uploader>
+          <van-col span="7">
+            <van-image
+              round
+              width="5rem"
+              height="5rem"
+              src="https://img.yzcdn.cn/vant/cat.jpeg"
+              @click="bottonimage"
+            />
           </van-col>
-          <van-col span="12">
+          <van-col span="13   ">
             <span class="spanone">沫羽</span><br />
             <span class="spantwo">这是一个神秘的皮皮侠</span><br />
             <span class="spantheer">关注 0 粉丝 0 获赞 0</span><br />
           </van-col>
-          <van-col span="6">
+          <van-col span="4">
             <div class="homepage">个人主页</div>
           </van-col>
         </van-row>
@@ -102,7 +100,7 @@
         <van-grid-item icon="photo-o" text="我的订单" />
         <van-grid-item icon="photo-o" text="小黑屋" />
         <van-grid-item icon="photo-o" text="意见反馈" />
-        <van-grid-item icon="photo-o" text="设置" />
+        <van-grid-item icon="photo-o" text="设置" to="/set" />
       </van-grid>
     </div>
   </div>
@@ -112,12 +110,12 @@
 export default {
   data() {
     return {
-      userinfo: true
+      userinfo: false
     };
   },
-  computed: {
-    defaultImg() {
-      return 'this.src="' + require("../../public/images/me/header.png") + '"';
+  methods: {
+    bottonimage() {
+      this.$router.push("/meself");
     }
   }
 };
@@ -134,16 +132,43 @@ export default {
   position: relative;
   background-color: #ffffff;
 }
-
+#me .metop .metopone {
+  position: relative;
+  padding-bottom: 8%;
+  margin-bottom: 6%;
+}
 #me .metop .metopone h3 {
   font-size: 22px;
   margin-top: 0;
   margin-bottom: 4%;
+  letter-spacing: 1px;
 }
 
 #me .metop .metopone p {
-  font-size: 15px;
-  
+  font-size: 13px;
+  color: #a9a9a9;
+  font-weight: 600;
+  margin: 5% 0;
+}
+
+#me .metop .metopone button {
+  background-color: #f9516b;
+  padding: 5% 15%;
+  border: none;
+  border-radius: 6px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 17px;
+  margin-top: 3%;
+}
+
+#me .metop .metopone .van-image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 44%;
+  height: 85%;
 }
 
 #me .spanone {
@@ -154,8 +179,8 @@ export default {
 
 #me .spantwo {
   font-size: 13px;
-  color: #a9a9a9;
   font-weight: 600;
+  color: #a9a9a9;
   letter-spacing: 1px;
 }
 
@@ -230,7 +255,7 @@ export default {
 }
 
 #me .van-swipe {
-  margin-top: 3%;
+  margin-top: 4%;
   margin-bottom: 3%;
 }
 

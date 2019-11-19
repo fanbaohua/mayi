@@ -13,6 +13,14 @@ const routes = [
   {
     path: "/me",
     component: () => import("../views/Me.vue")
+  },
+  {
+    path: "/set",
+    component: () => import("../views/Set.vue")
+  },
+  {
+    path: "/meself",
+    component: () => import("../views/MeSelf.vue")
   }
 ];
 
