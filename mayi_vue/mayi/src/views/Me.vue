@@ -1,55 +1,69 @@
 <template>
   <div id="me">
     <div class="metop">
-      <van-row class="row">
-        <van-col span="6">
-          <van-uploader>
-            <van-image
-              round
-              width="75"
-              height="75"
-              src=""
-              :onerror="defaultImg"
-            />
-          </van-uploader>
-        </van-col>
-        <van-col span="12">
-          <span class="spanone">沫羽</span><br />
-          <span class="spantwo">这是一个神秘的皮皮侠</span><br />
-          <span class="spantheer">关注 0 粉丝 0 获赞 0</span><br />
-        </van-col>
-        <van-col span="6">
-          <div class="homepage">个人主页</div>
-        </van-col>
-      </van-row>
+      <div class="metopone" v-if="userinfo">
+        <van-row class="row">
+          <van-col span="14">
+            <h3>欢迎来到皮皮虾</h3>
+            <p>马上登录和大家一起嗨皮</p>
+            <button>登录/注册</button>
+          </van-col>
+          <van-col span="10">
+            <van-image src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          </van-col>
+        </van-row>
+      </div>
+      <div class="metoptwo" v-else>
+        <van-row class="row">
+          <van-col span="6">
+            <van-uploader>
+              <van-image
+                round
+                width="75"
+                height="75"
+                src=""
+                :onerror="defaultImg"
+              />
+            </van-uploader>
+          </van-col>
+          <van-col span="12">
+            <span class="spanone">沫羽</span><br />
+            <span class="spantwo">这是一个神秘的皮皮侠</span><br />
+            <span class="spantheer">关注 0 粉丝 0 获赞 0</span><br />
+          </van-col>
+          <van-col span="6">
+            <div class="homepage">个人主页</div>
+          </van-col>
+        </van-row>
 
-      <div class="grids">
-        <van-grid>
-          <van-grid-item>
-            <div class="gridone grid">
-              <span class="span1">贴子</span><br />
-              <span class="span2">我发布的</span>
-            </div>
-          </van-grid-item>
-          <van-grid-item>
-            <div class="gridtwo grid">
-              <span class="span1">评论</span><br />
-              <span class="span2">我发出的</span>
-            </div>
-          </van-grid-item>
-          <van-grid-item>
-            <div class="gridtheer grid">
-              <span class="span1">插眼</span><br />
-              <span class="span2">期待后续</span>
-            </div>
-          </van-grid-item>
-          <van-grid-item>
-            <div class="gridfour grid">
-              <span class="span1">收藏</span><br />
-              <span class="span2">我的最爱</span>
-            </div>
-          </van-grid-item>
-        </van-grid>
+        <div class="grids">
+          <van-grid>
+            <van-grid-item>
+              <div class="gridone grid">
+                <span class="span1">贴子</span><br />
+                <span class="span2">我发布的</span>
+              </div>
+            </van-grid-item>
+            <van-grid-item>
+              <div class="gridtwo grid">
+                <span class="span1">评论</span><br />
+                <span class="span2">我发出的</span>
+              </div>
+            </van-grid-item>
+            <van-grid-item>
+              <div class="gridtheer grid">
+                <span class="span1">插眼</span><br />
+                <span class="span2">期待后续</span>
+              </div>
+            </van-grid-item>
+            <van-grid-item>
+              <div class="gridfour grid">
+                <span class="span1">收藏</span><br />
+                <span class="span2">我的最爱</span>
+              </div>
+            </van-grid-item>
+          </van-grid>
+        </div>
       </div>
 
       <!-- 轮播图 -->
@@ -97,7 +111,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      userinfo: true
+    };
   },
   computed: {
     defaultImg() {
@@ -117,6 +133,17 @@ export default {
   padding: 8% 3% 0 3%;
   position: relative;
   background-color: #ffffff;
+}
+
+#me .metop .metopone h3 {
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 4%;
+}
+
+#me .metop .metopone p {
+  font-size: 15px;
+  
 }
 
 #me .spanone {
