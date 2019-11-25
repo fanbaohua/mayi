@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view />
+    <transition :name="transitionName">
+      <router-view />
+    </transition>
     <van-tabbar
       v-model="active"
       :touter="true"
@@ -24,7 +26,8 @@ export default {
       iconna: "wap-home",
       iconnb: "search",
       iconnc: "more-o",
-      iconnd: "user-circle-o"
+      iconnd: "user-circle-o",
+      transitionName: ""
     };
   },
   methods: {
@@ -52,6 +55,17 @@ export default {
         this.iconnd = "manager";
       }
     }
+  },
+  watch: {
+    //使用watch 监听$router的变化
+    $route(to, from) {
+      console.log(to, from, to.meta.index);
+      //如果to索引大于from索引,判断为前进状态,反之则为后退状态
+      if (to.path == "/comments") {
+        //设置动画名称
+        this.transitionName = "slide-left";
+      }
+    }
   }
 };
 </script>
@@ -68,5 +82,29 @@ export default {
   font-size: 35px;
   font-weight: bold;
   margin: auto;
+}
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 0.5s;
+  position: absolute;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
 }
 </style>

@@ -94,4 +94,9 @@ router.post('/search', (req, res) => {
     })
 })
 
+// 评论
+router.get('/comments',(req,res) => {
+    console.log(req.query.id)
+})
+
 module.exports = router;  

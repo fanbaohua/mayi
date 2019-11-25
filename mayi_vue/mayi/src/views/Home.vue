@@ -3,7 +3,7 @@
     <van-tabs
       v-model="activeName"
       title-active-color="#ff00ff"
-      @change="currentes()"
+      @change="currentes(activeName)"
       sticky
       :swipeable="true"
     >
@@ -14,7 +14,7 @@
         v-for="(item, index) in titles"
         :key="index"
         :title="item"
-        :name="item"
+        :name="index"
       >
         <van-list
           v-model="loading"
@@ -93,14 +93,11 @@
                   ></video-player>
                 </div>
               </div>
-              <div v-if="item.pro_classes == 2">
+              <div v-if="item.pro_classes == '2'">
                 <p>{{ item.pro_title }}</p>
                 <div>
                   {{ item.pro_text }}
                 </div>
-              </div>
-              <div v-if="a == 2">
-                <p></p>
               </div>
               <div class="zan">
                 <van-row>
@@ -135,7 +132,7 @@
                     />
                     <span>踩</span>
                   </van-col>
-                  <van-col span="6">
+                  <van-col span="6" @click="comments">
                     <img src="../../public/images/home/liaotian.png" alt />
                     <span>6879</span>
                   </van-col>
@@ -167,7 +164,7 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      activeName: "推荐",
+      activeName: 1,
       titles: ["关注", "推荐", "图片", "视频", "文字", "游戏", "汽车"],
       list: [],
       recommander: false,
@@ -221,6 +218,9 @@ export default {
   },
   components: {},
   methods: {
+    comments() {
+      this.$router.push("/comments");
+    },
     getlist(classes) {
       this.$http.get("/home", { params: { class: classes } }).then(res => {
         this.list = res.data.data;
@@ -282,8 +282,13 @@ export default {
           .siblings(".van-tab")
           .css("font-size", "12px");
       }, 5);
-      this.getlist(1);
-      console.log("已触发");
+      if (this.activeName == 3) {
+        this.getlist(1);
+      } else if (this.activeName == 4) {
+        this.getlist(2);
+      } else {
+        this.getlist();
+      }
     },
     showPopup() {
       $(".recommander").css("display", "block");
@@ -324,14 +329,18 @@ export default {
       this.$router.push("/search");
     },
     onLoad() {
-      for (let i = 0; i < 10; i++) {
-        this.list.push(this.list.length + 1);
+      if (this.activeName == 3) {
+        this.getlist(1);
+      } else if (this.activeName == 4) {
+        this.getlist(2);
+      } else {
+        this.getlist();
       }
       // 加载状态结束
       this.loading = false;
 
       // 数据全部加载完成
-      if (this.list.length >= 40) {
+      if (this.list.length == "") {
         this.finished = true;
       }
     }
