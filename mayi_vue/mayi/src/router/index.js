@@ -33,6 +33,10 @@ const routes = [
   {
     path: "/comments",
     component: () => import("../views/comment.vue")
+  },
+  {
+    path: "/search",
+    component: () => import("../views/Search.vue")
   }
 ];
 
