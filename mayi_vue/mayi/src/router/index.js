@@ -37,6 +37,16 @@ const routes = [
   {
     path: "/search",
     component: () => import("../views/Search.vue")
+  },
+  // 消息页
+  {
+    path: "/info",
+    component: () => import("../views/information.vue")
+  },
+  // 发表页
+  {
+    path: "/publish",
+    component: () => import("../views/publish.vue")
   }
 ];
 

@@ -11,8 +11,8 @@
     >
       <van-tabbar-item :icon="iconna" to="/">首页</van-tabbar-item>
       <van-tabbar-item :icon="iconnb" to="/found">发现</van-tabbar-item>
-      <div class="divc">+</div>
-      <van-tabbar-item :icon="iconnc" to="/information">消息</van-tabbar-item>
+      <div class="divc" @click="topublish">+</div>
+      <van-tabbar-item :icon="iconnc" to="/info">消息</van-tabbar-item>
       <van-tabbar-item :icon="iconnd" to="/me">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -54,6 +54,9 @@ export default {
         this.iconnc = "more-o";
         this.iconnd = "manager";
       }
+    },
+    topublish() {
+      this.$router.push("/publish");
     }
   },
   watch: {
