@@ -1,10 +1,10 @@
 module.exports = {
     server:{
         port: 8105,
-        prefix: "/api/v1/"  // 版本号
+        prefix: "/api/mayi/"  // 版本号
     },
     db:{
-        host     : 'localhost',
+        host     : '127.0.0.1',
         port     : 3306,
         user     : 'root',
         password : '123456',

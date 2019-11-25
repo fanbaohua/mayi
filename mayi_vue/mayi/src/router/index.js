@@ -13,6 +13,30 @@ const routes = [
   {
     path: "/me",
     component: () => import("../views/Me.vue")
+  },
+  {
+    path: "/set",
+    component: () => import("../views/Set.vue")
+  },
+  {
+    path: "/meself",
+    component: () => import("../views/MeSelf.vue")
+  },
+  {
+    path: "/edit",
+    component: () => import("../views/Edit")
+  },
+  {
+    path: "/searchcontent",
+    component: () => import("../views/SearchContent.vue")
+  },
+  {
+    path: "/comments",
+    component: () => import("../views/comment.vue")
+  },
+  {
+    path: "/search",
+    component: () => import("../views/Search.vue")
   }
 ];
 
