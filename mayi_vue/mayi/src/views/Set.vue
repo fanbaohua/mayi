@@ -2,6 +2,19 @@
   <div id="set">
     <van-nav-bar title="设置" left-arrow @click-left="onClickLeft" />
     <div class="container_top">
+      <div v-if="loginafter">
+        <van-cell-group>
+          <van-cell
+            title="账号与安全"
+            is-link
+            class="ababab"
+            to="/accountandsafety"
+          />
+        </van-cell-group>
+        <van-cell-group>
+          <van-cell title="通知设置" is-link class="ababab" to="/inform" />
+        </van-cell-group>
+      </div>
       <van-cell-group>
         <van-switch-cell
           v-model="checked"
@@ -85,6 +98,8 @@
         <van-cell title="社区公约" is-link class="ababab" />
       </van-cell-group>
     </div>
+
+    <van-button type="primary" size="large">退出登录</van-button>
     <div class="buttom">
       <van-row>当前版本V2.3.3</van-row>
       <van-row>皮皮虾</van-row>
@@ -99,7 +114,8 @@ export default {
     return {
       checked: true,
       show: false,
-      radio: "1"
+      radio: "1",
+      loginafter: true
     };
   },
   methods: {
@@ -155,5 +171,12 @@ export default {
 #set .container_top .van-popup .van-radio {
   padding-left: 10%;
   margin-bottom: 4%;
+}
+
+#set .van-button {
+  background-color: #fff;
+  color: black;
+  border: transparent;
+  margin-top: 3%;
 }
 </style>

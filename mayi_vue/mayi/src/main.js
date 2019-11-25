@@ -8,7 +8,7 @@ import "vant/lib/index.css";
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = "http://localhost:9999/api/v1";
+axios.defaults.baseURL = "http://127.0.0.1:8105/api/mayi";
 Vue.prototype.$http = axios;
 
 Vue.use(Vant);

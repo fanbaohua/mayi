@@ -9,7 +9,7 @@
             <button>登录/注册</button>
           </van-col>
           <van-col span="10">
-            <van-image src="https://img.yzcdn.cn/vant/cat.jpeg" />
+            <van-image :src="users.user_topimage" />
           </van-col>
         </van-row>
       </div>
@@ -20,17 +20,21 @@
               round
               width="5rem"
               height="5rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
+              :src="users.user_topimage"
               @click="bottonimage"
             />
           </van-col>
           <van-col span="13   ">
-            <span class="spanone">沫羽</span><br />
-            <span class="spantwo">这是一个神秘的皮皮侠</span><br />
-            <span class="spantheer">关注 0 粉丝 0 获赞 0</span><br />
+            <span class="spanone">{{ users.user_name }}</span
+            ><br />
+            <span class="spantwo" v-html="introduced"></span><br />
+            <span class="spantheer"
+              >关注 {{ focus.num }} 粉丝 {{ fans.num }} 获赞
+              {{ likes.num }}</span
+            ><br />
           </van-col>
           <van-col span="4">
-            <div class="homepage">个人主页</div>
+            <div class="homepage" @click="homepage">个人主页</div>
           </van-col>
         </van-row>
 
@@ -67,16 +71,28 @@
       <!-- 轮播图 -->
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item>
-          <van-image src="" class="swipeimage" />
+          <img
+            src="../../public/images/me/Snipaste_2019-11-22_08-03-06.png"
+            alt=""
+          />
         </van-swipe-item>
         <van-swipe-item>
-          <van-image src="" class="swipeimage" />
+          <img
+            src="../../public/images/me/Snipaste_2019-11-22_08-03-06.png"
+            alt=""
+          />
         </van-swipe-item>
         <van-swipe-item>
-          <van-image src="" class="swipeimage" />
+          <img
+            src="../../public/images/me/Snipaste_2019-11-22_08-03-06.png"
+            alt=""
+          />
         </van-swipe-item>
         <van-swipe-item>
-          <van-image src="" class="swipeimage" />
+          <img
+            src="../../public/images/me/Snipaste_2019-11-22_08-03-06.png"
+            alt=""
+          />
         </van-swipe-item>
       </van-swipe>
 
@@ -110,13 +126,42 @@
 export default {
   data() {
     return {
-      userinfo: false
+      userinfo: false,
+      // 用户信息
+      users: [],
+      //用户介绍
+      introduced: "",
+      // 获赞
+      likes: [],
+      //关注
+      focus: [],
+      //粉丝
+      fans: []
     };
   },
   methods: {
     bottonimage() {
       this.$router.push("/meself");
+    },
+    homepage() {
+      this.$router.push("/meself");
     }
+  },
+  created() {
+    this.$http.get("/me").then(res => {
+      this.users = res.data.data[0];
+      console.log(res);
+      this.likes = res.data.data[1];
+      this.focus = res.data.data[2];
+      this.fans = res.data.data[3];
+      localStorage.setItem("users", this.users.user_name);
+      localStorage.setItem("likes", this.likes.num);
+      localStorage.setItem("focus", this.focus.num);
+      localStorage.setItem("fans", this.fans.num);
+      localStorage.setItem("image", this.users.user_topimage);
+      localStorage.setItem("name", this.users.user_name);
+      this.introduced = res.data.data[0].user_name || "这是一个皮皮虾";
+    });
   }
 };
 </script>
@@ -174,14 +219,12 @@ export default {
 #me .spanone {
   font-size: 20px;
   font-weight: 900;
-  letter-spacing: 3px;
 }
 
 #me .spantwo {
   font-size: 13px;
   font-weight: 600;
   color: #a9a9a9;
-  letter-spacing: 1px;
 }
 
 #me .spantheer {

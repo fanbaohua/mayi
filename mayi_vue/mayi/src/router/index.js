@@ -21,6 +21,22 @@ const routes = [
   {
     path: "/meself",
     component: () => import("../views/MeSelf.vue")
+  },
+  {
+    path: "/edit",
+    component: () => import("../views/Edit")
+  },
+  {
+    path: "/accountandsafety",
+    component: () => import("../views/Account_and_safety.vue")
+  },
+  {
+    path: "/inform",
+    component: () => import("../views/Inform.vue")
+  },
+  {
+    path: "/login",
+    component: () => import("../views/Login.vue")
   }
 ];
 
