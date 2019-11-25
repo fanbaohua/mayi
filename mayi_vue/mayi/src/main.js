@@ -17,7 +17,7 @@ Vue.use(VideoPlayer);
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = "http://localhost:8105/api/mayi";
+axios.defaults.baseURL = "http://127.0.0.1:8105/api/mayi";
 Vue.prototype.$http = axios;
 
 Vue.use(Vant);

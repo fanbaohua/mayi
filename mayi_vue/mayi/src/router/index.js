@@ -23,8 +23,8 @@ const routes = [
     component: () => import("../views/MeSelf.vue")
   },
   {
-    path: "/search",
-    component: () => import("../views/Search.vue")
+    path: "/edit",
+    component: () => import("../views/Edit")
   },
   {
     path: "/searchcontent",

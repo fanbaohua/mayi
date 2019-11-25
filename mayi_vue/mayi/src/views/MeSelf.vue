@@ -1,24 +1,28 @@
 <template>
   <div id="meself">
     <div class="header">
-      <van-nav-bar title="沫羽" left-arrow @click-left="onClickLeft" />
+      <van-nav-bar :title="name" left-arrow @click-left="onClickLeft" />
       <van-row>
         <van-col span="7">
+          <van-image-preview v-model="show" :images="images">
+          </van-image-preview>
           <van-image
             round
             width="5rem"
             height="5rem"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            :src="image"
             to="/meself"
-          />
+            @click="showcli"
+          >
+          </van-image>
         </van-col>
         <van-col span="17">
           <van-row>
             <van-row>
-              <van-col span="6">0</van-col>
-              <van-col span="6">0</van-col>
-              <van-col span="6">0</van-col>
-              <van-col span="6">24</van-col>
+              <van-col span="6">{{ likes }}</van-col>
+              <van-col span="6">{{ focus }}</van-col>
+              <van-col span="6">{{ fans }}</van-col>
+              <van-col span="6">30</van-col>
             </van-row>
             <van-row class="rowtwo">
               <van-col span="6">获赞</van-col>
@@ -26,13 +30,13 @@
               <van-col span="6">关注</van-col>
               <van-col span="6">积分</van-col>
             </van-row>
-            <button>编辑资料</button>
+            <van-button to="/edit">编辑资料</van-button>
           </van-row>
         </van-col>
       </van-row>
 
-      <p>这是一个神秘的皮皮侠</p>
-      <van-tag round type="primary">宿迁</van-tag>
+      <p>{{ introduced }}</p>
+      <van-tag round type="primary">{{ deindexss }}</van-tag>
     </div>
     <van-tabs v-model="activeName" :animated="true" :swipeable="true">
       <van-tab title="全部" name="a">现在不发贴，光看别人火</van-tab>
@@ -47,13 +51,35 @@
 export default {
   data() {
     return {
-      activeName: "a"
+      show: false,
+      images: [],
+      activeName: "a",
+      likes: "",
+      focus: "",
+      fans: "",
+      image: "",
+      name: "",
+      introduced: "",
+      deindexss: ""
     };
   },
   methods: {
     onClickLeft() {
       this.$router.go(-1);
+    },
+    showcli() {
+      this.show = true;
     }
+  },
+  created() {
+    this.likes = localStorage.getItem("likes");
+    this.focus = localStorage.getItem("focus");
+    this.fans = localStorage.getItem("fans");
+    this.image = localStorage.getItem("image");
+    this.name = localStorage.getItem("name");
+    this.introduced = sessionStorage.getItem("introduced");
+    this.deindexss = sessionStorage.getItem("deindexss");
+    this.images.push(this.image);
   }
 };
 </script>
@@ -81,15 +107,19 @@ export default {
   margin-top: 2%;
 }
 
-#meself .header button {
-  color: #f9516b;
+#meself .header .van-button {
+  padding: 0 30%;
   border: 1px solid #f9516b;
-  border-radius: 5px;
   background-color: #fff;
-  padding: 3% 30%;
+  color: #f9516b;
+  border-radius: 6px;
+  margin-top: 2%;
+}
+
+#meself .header .van-button .van-button__text {
   font-weight: bold;
   letter-spacing: 1px;
-  margin-top: 4%;
+  font-size: 17px;
 }
 
 #meself .header p {

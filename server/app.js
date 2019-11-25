@@ -28,6 +28,8 @@ app.use(`${routerApi}`, require('./router/RouterRelease'))
 app.use(`${routerApi}`, require('./router/RouterMessage'))
 // 我的
 app.use(`${routerApi}`, require('./router/RouterMine'))
+// 编辑资料
+app.use(`${routerApi}`, require('./router/RouterEdit'))
 
 app.listen(config.server.port, () => {
     console.log(`http://127.0.0.1:${config.server.port}`);

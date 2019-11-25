@@ -9,11 +9,11 @@
       active-color="#7d7e80"
       @change="abc(active)"
     >
-      <van-tabbar-item :icon="iconna">首页</van-tabbar-item>
-      <van-tabbar-item :icon="iconnb">发现</van-tabbar-item>
+      <van-tabbar-item :icon="iconna" to="/">首页</van-tabbar-item>
+      <van-tabbar-item :icon="iconnb" to="/found">发现</van-tabbar-item>
       <div class="divc">+</div>
-      <van-tabbar-item :icon="iconnc">消息</van-tabbar-item>
-      <van-tabbar-item :icon="iconnd">我的</van-tabbar-item>
+      <van-tabbar-item :icon="iconnc" to="/information">消息</van-tabbar-item>
+      <van-tabbar-item :icon="iconnd" to="/me">我的</van-tabbar-item>
     </van-tabbar>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       active: 0,
-      iconna: "wap-home",
+      iconna: "wap-home-o",
       iconnb: "search",
       iconnc: "more-o",
       iconnd: "user-circle-o",
@@ -32,18 +32,18 @@ export default {
   },
   methods: {
     abc(active) {
-      window.console.log(active);
-      if (active == 0) {
+      sessionStorage.setItem("active", active);
+      if (active == "0") {
         this.iconna = "wap-home";
         this.iconnb = "search";
         this.iconnc = "more-o";
         this.iconnd = "user-circle-o";
-      } else if (active == 1) {
+      } else if (active == "1") {
         this.iconna = "wap-home-o";
         this.iconnb = "fire";
         this.iconnc = "more-o";
         this.iconnd = "user-circle-o";
-      } else if (active == 2) {
+      } else if (active == "2") {
         this.iconna = "wap-home-o";
         this.iconnb = "fire-o";
         this.iconnc = "more";
